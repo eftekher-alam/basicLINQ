@@ -1,0 +1,44 @@
+﻿@model IQueryable<Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2">
+
+            <h3 class="text-center">Category List</h3>
+
+            <div class="row">
+                <div class="col-10"></div>
+                <div class="col-2">
+                    <a asp-controller="Category" asp-action="Create" class="btn btn-sm btn-outline-primary">Create</a>
+                </div>
+            </div>
+            <hr />
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Category Id</th>
+                        <th>Category Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CategroyId</td>
+                            <td>@item.CategoryName</td>
+                            <td>
+                                <a asp-controller="Category" asp-action="Edit" asp-route-CategroyId="@item.CategroyId" class="btn btn-sm btn-outline-warning">Edit</a>
+                                <a asp-controller="Category" asp-action="Delete" asp-route-CategroyId="@item.CategroyId" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

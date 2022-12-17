@@ -1,0 +1,57 @@
+﻿@model Vehicle
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3 border">
+            <h1 class="text-center">Delete</h1>
+            <hr />
+            <form method="post" asp-action="Delete" asp-route-vehicleId="@Model.vehicleId">
+                <div>
+                    <label asp-for="EngId" class="form-label"></label>
+                    <input asp-for="EngId" type="text" class="form-control" disabled />
+                    <span asp-validation-for="EngId" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="PurchaseDate" class="form-label"></label>
+                    <input asp-for="PurchaseDate" type="date" class="form-control" disabled />
+                    <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+                </div>
+                <div class="mt-3">
+                    <label asp-for="CurrStatus" class="form-label"></label>
+                    <div class="form-check form-check-inline">
+                        <input asp-for="CurrStatus" class="form-check-input" type="radio" value="Running" disabled>
+                        <label class="form-check-label" for="inlineRadio1">Running</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input asp-for="CurrStatus" class="form-check-input" type="radio" value="Not Running" disabled>
+                        <label class="form-check-label" for="inlineRadio2">Not Running</label>
+                    </div>
+                    <span asp-validation-for="CurrStatus" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="Picture" class="form-label"></label>
+                    <img src="~/@Model.Picture" width="50px" />
+                </div>
+                <div>
+                    <label asp-for="CategoryId" class="form-label"></label>
+                    <select asp-for="CategoryId" class="form-control" disabled>
+                        <option selected>-------- select -------</option>
+                        @foreach (var item in ViewBag.Category)
+                        {
+                            <option value="@item.CategroyId">@item.CategoryName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <div class="m-3 text-center">
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Confirm</button>
+                    <a asp-action="Index" class="btn btn-sm btn-outline-warning">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

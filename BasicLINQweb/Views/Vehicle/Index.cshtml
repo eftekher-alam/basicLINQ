@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Vehicle>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="col-10 offset-1">
+        <div class="row">
+            <h1 class="text-center">Index</h1>
+            <div class="row ">
+                <div class="col-10"></div>
+                <div class="col-2 text-end">
+                    <a asp-action="Create" class="btn btn-sm btn-outline-info m-3">Create</a>
+                </div>
+                <table class="table table-bordered table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th>Engine Id</th>
+                            <th>Purchase Date</th>
+                            <th>Current Status</th>
+                            <th>Picture</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.EngId</td>
+
+                                <td>@item.PurchaseDate.ToString("dd/MM/yyyy")</td>
+
+                                <td>@item.CurrStatus</td>
+
+                                <td><img src="~/@item.Picture" class="rounded-circle" height="50px" width="50px"></td>
+
+                                <td>@item.Category.CategoryName</td>
+
+                                <td>
+                                    <a asp-action="Edit" asp-route-vehicleId="@item.vehicleId" class="btn btn-sm btn-outline-warning">Edit</a>
+                                    <a asp-action="Delete" asp-route-vehicleId="@item.vehicleId" class="btn btn-sm btn-outline-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
